@@ -379,6 +379,7 @@ def main(
                 # Update timestamps
                 if cls == "Qcar":
                     last_qcar_seen_time = current_time
+                    #print(height)
                     # print("Qcar width is: ", width)
                     # print("Qcar height is: ", height)
                     # print(
@@ -469,6 +470,7 @@ def main(
                 ):  # Simplified QCar following
                     is_stopped_qcar = True
                     last_stop_qcar = current_time
+                    #print("stopped because qcar too close - height")
 
                 elif (
                     cls == "Qcar"
@@ -485,6 +487,7 @@ def main(
                 ):
                     # print("in front of qcar")
                     is_stopped_qcar_red_light = True
+                    #print("stopped because qcar too close - light")
 
                 elif (
                     cls == "Qcar"
@@ -498,6 +501,7 @@ def main(
                     and not is_stopped_pedestrian
                 ):
                     is_stopped_qcar = False
+                    #print("Resumed because qcar far enough - height")
 
                 elif (
                     cls == "Qcar"
@@ -514,6 +518,7 @@ def main(
                 ):
                     # print("No longer in front of qcar")
                     is_stopped_qcar_red_light = False
+                    #print("Resumed because qcar far enough - light")
 
                 elif (
                     cls == "stop_sign"
@@ -580,15 +585,17 @@ def main(
 
             if is_stopped_qcar and (current_time - last_qcar_seen_time > 1):
                 is_stopped_qcar = False
+                print("no longer stopped for qcar - height")
 
             if is_stopped_qcar_red_light and (
                 (
                     current_time - last_green_light_seen_time < 1
-                    and current_time - last_red_light_seen_time > 1
+                    
                 )
-                or (current_time - last_qcar_seen_time > 1)
+                
             ):
                 is_stopped_qcar_red_light = False
+                print("no longer stopped for qcar - light")
 
             if is_stopped_for_sign and (
                 current_time - stop_sign_start_time > STOP_SIGN_WAIT_TIME_S
