@@ -4,8 +4,6 @@ Note:
 
 The controller code is not perfect. For the moment, it is programmed to stop at stop signs for 5 seconds regardless of circumstance, and stop at yield signs for 3 seconds regardless of circumstance.
 
-The adaptive cruise control is a bit jerky, this will be fixed in future updates.
-
 The Training_model.py file is for training a yolov8 model that you've downloaded. The paths won't work because they're local to my PC.
 
 The v2x_helpers.py is a standalone script to run just v2x on both QCars. The main program ran from "run.bat" utilizes both perception and v2x. It is good for visualizing and modifying the geofences.
